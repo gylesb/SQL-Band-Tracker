@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+
+<body>
+  <h1>@Model["venue"].GetName()</h1>
+  <hr>
+  <table>
+    <tr>
+      <th>Venue</th>
+      <th>Id</th>
+    </tr>
+    @foreach (var band in @Model["bands"])
+    {
+      <tr>
+      <td><a href="/band/@band.GetId()/bands">@band.GetName()</a></td>
+      <td>@band.GetId()</td>
+      </tr>
+    }
+  </table>
+
+  <h4>Add a band to this venue:</h4>
+<form action='/venues/@Model["venue"].GetId()/band/add' method='post'>
+  <label for='band-id'>Select a band</label>
+  <select style="width: 20%;" class="form-control" id='band-id' name='band-id' type='text'>
+    @foreach (var band in @Model["allBands"])
+    {
+      <option value='@band.GetId()'>@band.GetName()</option>
+    }
+  </select><br>
+  <button class="btn" type='submit'>Add</button>
+</form>
+
+<br>
+<a href="/band/add">Add Band</a>
+<br>
+  <a href="/venues/">View Venues</a><br>
+  <a href="/">Home</a>
+
+<br>
+</body>
