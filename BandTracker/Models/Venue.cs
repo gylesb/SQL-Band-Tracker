@@ -52,7 +52,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM venues;";
+      cmd.CommandText = @"SELECT * FROM venue;";
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
       {
@@ -74,10 +74,10 @@ namespace BandTracker.Models
         MySqlConnection conn = DB.Connection();
         conn.Open();
         var cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = @"SELECT bands.* FROM venues
-        JOIN bands_venues ON (venues.id = bands_venues.venue_id)
-        JOIN bands ON (bands_venues.band_id = bands.id)
-        WHERE venues.id = @VenueId;";
+        cmd.CommandText = @"SELECT band.* FROM venue
+        JOIN band_venue ON (venue.id = band_venue.venue_id)
+        JOIN band ON (band_venue.band_id = band.id)
+        WHERE venue.id = @VenueId;";
 
         MySqlParameter venueIdParameter = new MySqlParameter();
         venueIdParameter.ParameterName = "@VenueId";
@@ -107,7 +107,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE venues SET name = @newName WHERE id = @searchId;";
+      cmd.CommandText = @"UPDATE venue SET name = @newName WHERE id = @searchId;";
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@searchId";
@@ -135,7 +135,7 @@ namespace BandTracker.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO venues (name) VALUES (@name);";
+      cmd.CommandText = @"INSERT INTO venue (name) VALUES (@name);";
 
       MySqlParameter name = new MySqlParameter();
       name.ParameterName = "@name";
@@ -156,7 +156,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM `venues` WHERE id = @thisId;";
+      cmd.CommandText = @"SELECT * FROM `venue` WHERE id = @thisId;";
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@thisId";
@@ -188,7 +188,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM venues;";
+      cmd.CommandText = @"DELETE FROM venue;";
       cmd.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
@@ -202,7 +202,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO bands_venues (band_id, venue_id) VALUES (@BandId, @VenueId);";
+      cmd.CommandText = @"INSERT INTO band_venue (band_id, venue_id) VALUES (@BandId, @VenueId);";
 
       MySqlParameter band_id = new MySqlParameter();
       band_id.ParameterName = "@BandId";
@@ -227,7 +227,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId;";
+      cmd.CommandText = @"DELETE FROM venue WHERE id = @VenueId; DELETE FROM band_venue WHERE venue_id = @VenueId;";
 
       MySqlParameter venueIdParameter = new MySqlParameter();
       venueIdParameter.ParameterName = "@VenueId";
@@ -240,6 +240,6 @@ namespace BandTracker.Models
         conn.Close();
       }
     }
-    
+
   }
 }
