@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 09, 2017 at 01:24 AM
+-- Generation Time: Nov 13, 2017 at 05:46 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -34,6 +34,13 @@ CREATE TABLE `band` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `band`
+--
+
+INSERT INTO `band` (`id`, `name`) VALUES
+(1, 'zxc');
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +68,13 @@ CREATE TABLE `venue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `venue`
+--
+
+INSERT INTO `venue` (`id`, `name`, `location`) VALUES
+(1, 'xc', '');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -82,6 +96,25 @@ ALTER TABLE `band_venue`
 ALTER TABLE `venue`
   ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `band`
+--
+ALTER TABLE `band`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `band_venue`
+--
+ALTER TABLE `band_venue`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `venue`
+--
+ALTER TABLE `venue`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
